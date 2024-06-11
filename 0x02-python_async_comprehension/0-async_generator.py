@@ -2,18 +2,13 @@
 """Async Generator"""
 
 
-import asyncio
-import random
+from asyncio import sleep
+from random import uniform
+from typing import AsyncGenerator
 
 
-async def number_genertor():
-    """ Returns Generator """
-    for i in range(10):
-        yield i
-
-
-async def async_generator():
-    """ Generates random number between 1 - 10 """
-    async for _ in number_genertor():
-        yield random.random() * 10
-        await asyncio.sleep(1)
+async def async_generator() -> AsyncGenerator[float, None]:
+    """ Async Generator """
+    for _ in range(10):
+        await sleep(1)
+        yield uniform(0, 10)
